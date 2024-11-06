@@ -281,12 +281,12 @@ impl FromStr for PlaybackManifest {
 ///LOW(96kbps AAC)
 ///HIGH(320kbps AAC)
 ///LOSSLESS(1411kbps|16bit/44.1kHz FLAC/ALAC)
-///HI_RES(24bit/96kHz MQA encoded FLAC)
+///HI_RES_LOSSLESS(24bit/96kHz MQA encoded FLAC)
 pub enum AudioQuality {
     Low,
     High,
     Lossless,
-    HiRes,
+    HiResLossless,
 }
 
 impl fmt::Display for AudioQuality {
@@ -295,7 +295,7 @@ impl fmt::Display for AudioQuality {
             AudioQuality::Low => "LOW",
             AudioQuality::High => "HIGH",
             AudioQuality::Lossless => "LOSSLESS",
-            AudioQuality::HiRes => "HI_RES",
+            AudioQuality::HiResLossless => "HI_RES_LOSSLESS",
         };
         fmt.write_str(str)?;
         Ok(())
@@ -308,7 +308,7 @@ impl FromStr for AudioQuality {
             "LOW" => Ok(AudioQuality::Low),
             "HIGH" => Ok(AudioQuality::High),
             "LOSSLESS" => Ok(AudioQuality::Lossless),
-            "HI_RES" => Ok(AudioQuality::HiRes),
+            "HI_RES_LOSSLESS" => Ok(AudioQuality::HiResLossless),
             _ => Err("Error".to_string()),
         }
     }
@@ -316,12 +316,12 @@ impl FromStr for AudioQuality {
 
 impl clap::ValueEnum for AudioQuality {
     fn value_variants<'a>() -> &'a [Self] {
-        &[Self::Low, Self::High, Self::Lossless, Self::HiRes]
+        &[Self::Low, Self::High, Self::Lossless, Self::HiResLossless]
     }
 
     fn to_possible_value<'a>(&self) -> Option<clap::PossibleValue<'a>> {
         match self {
-            Self::HiRes => Some(clap::PossibleValue::new("max")),
+            Self::HiResLossless => Some(clap::PossibleValue::new("max")),
             Self::Lossless => Some(clap::PossibleValue::new("lossless")),
             Self::High => Some(clap::PossibleValue::new("high")),
             Self::Low => Some(clap::PossibleValue::new("low")),

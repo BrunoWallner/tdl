@@ -1,4 +1,4 @@
-# tdl
+ tdl
 tdl is a rust implementation of the Python Script [Tidal-Media-Downloader](https://github.com/yaronzz/Tidal-Media-Downloader).
 
 ## Overview 
@@ -142,9 +142,9 @@ Track:
   - Default:
     - `HI_RES`
   - Accepted Values:
-    - `HI_RES` 
+    - `HI_RES_LOSSLESS` 
       - (24bit/96kHz MQA encoded FLAC)
-    - `LOSSLESS` 
+    - `LOSSLESS`
       - (1411kbps|16bit/44.1kHz FLAC/ALAC)
     - `HIGH` 
       - (320kbps AAC)

@@ -177,7 +177,10 @@ impl DownloadTask {
         writer.flush().await?;
 
         pb.set_message(format!("Writing metadata | {info}"));
-        self.write_metadata(track, path).await?;
+        match self.write_metadata(track, path).await {
+            Ok(()) => (),
+            Err(e) => eprintln!("failed to write metadata: {}", e),
+        };
         pb.println(format!("Download Complete | {info}"));
 
         Ok(true)
